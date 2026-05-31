@@ -1,0 +1,20 @@
+[project]
+name = "langfuse-python-sdk-test"
+version = "0.1.0"
+description = "Minimal Langfuse Python SDK v3 nested spans demo."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "langfuse>=3,<4",
+    "python-dotenv>=1.0,<2",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9,<10",
+]
+
+[tool.pytest.ini_options]
+pythonpath = [
+    ".",
+]

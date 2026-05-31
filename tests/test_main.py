@@ -22,6 +22,9 @@ class FakeObservation(AbstractContextManager):
         self.updates.append(kwargs)
         self.client.events.append(("update_observation", self.kind, kwargs))
 
+    def update_trace(self, **kwargs):
+        self.client.events.append(("update_observation_trace", self.kind, kwargs))
+
 
 class FakeLangfuseClient:
     def __init__(self):

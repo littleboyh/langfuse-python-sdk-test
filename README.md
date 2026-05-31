@@ -7,32 +7,96 @@ This repository contains a minimal Langfuse Python SDK v3 example that reports:
 - a nested `llm_completion` generation with model metadata
 - trace-level user and session metadata
 
-## Setup
+## Prerequisites
 
-Create `.env` with your Langfuse credentials:
+- Python 3.12
+- uv 0.11+
+- A Langfuse project, either on Langfuse Cloud or a local/self-hosted Langfuse instance
+
+Check uv:
 
 ```bash
-LANGFUSE_PUBLIC_KEY=pk-lf-...
+uv --version
+```
+
+## Quick Start
+
+1. Create `.env` from the example file:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+2. Edit `.env` and set your own Langfuse credentials:
+
+```bash
 LANGFUSE_SECRET_KEY=sk-lf-...
-LANGFUSE_HOST=https://cloud.langfuse.com
+LANGFUSE_PUBLIC_KEY=pk-lf-...
+LANGFUSE_BASE_URL=https://cloud.langfuse.com
 ```
 
-Install dependencies:
+For local Langfuse, use your local URL instead:
 
 ```bash
-python -m pip install -r requirements.txt
+LANGFUSE_BASE_URL=http://127.0.0.1:3000
 ```
 
-Run the demo:
+3. Install dependencies:
 
 ```bash
-python -m src.main
+uv sync
+```
+
+4. Start the demo:
+
+```bash
+uv run python -m src.main
+```
+
+The script sends a trace named `langfuse-python-sdk-nested-spans-demo` to Langfuse. Open your Langfuse project UI and check the traces page after the command finishes.
+
+5. Run tests:
+
+```bash
+uv run pytest -v
+```
+
+## Common uv Commands
+
+Sync the virtual environment from `pyproject.toml` and `uv.lock`:
+
+```bash
+uv sync
+```
+
+Run the project:
+
+```bash
+uv run python -m src.main
 ```
 
 Run tests:
 
 ```bash
-python -m pytest -v
+uv run pytest -v
+```
+
+Add a runtime dependency:
+
+```bash
+uv add "package-name"
+```
+
+Add a development dependency:
+
+```bash
+uv add --dev "package-name"
+```
+
+Update the lockfile:
+
+```bash
+uv lock
 ```
 
 ## Version Note

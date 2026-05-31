@@ -74,7 +74,10 @@ def run_nested_span_demo(langfuse_client=None) -> dict[str, Any]:
             name="load_user_context",
             input={"user_id": USER_ID},
         ) as user_context_span:
-            user_context_span.update_trace(name="user_context_span")
+            user_context_span.update_trace(name="user_context_span",
+                                           user_id=1000,
+                                           session_id=1000,
+                                           tags=["user-context", "demo"])
             user_context = {
                 "user_id": USER_ID,
                 "tier": "pro",
